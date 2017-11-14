@@ -1,0 +1,6 @@
+[package]
+name = "server"
+version = "0.1.0"
+authors = ["dsummers91 <deonsummers91@gmail.com>"]
+
+[dependencies]
