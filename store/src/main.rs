@@ -1,19 +1,16 @@
 #![feature(vec_remove_item)]
+mod worker;
 
-use std::sync::{Arc, Mutex};
+use std::sync::{Mutex};
+use std::str;
 use std::fmt::{Display, Formatter, Result};
-
+use worker::Worker;
 
 struct Store<'a> {
     name: &'static str,
     workers: Mutex<&'a mut Vec<Worker>>,
 }
 
-#[derive(Debug, PartialEq, Clone, Copy)]
-struct Worker {
-    name: &'static str,
-    age: i32,
-}
 
 impl<'a> Store<'a> {
     fn hire_worker(&'a self, worker: Worker) {
@@ -37,7 +34,7 @@ impl Display for Worker {
 
 fn main() {
     let mut workers = Vec::new();
-    let mut store = Store {
+    let store = Store {
         name: "test",
         workers: Mutex::new(&mut workers),
     };
@@ -45,6 +42,8 @@ fn main() {
         name: "Bob",
         age: 18,
     };
+    let g = get_something();
+    println!("{}", g);
     println!("{}", store.name);
     store.hire_worker(Worker {
         name: "Mary",
@@ -57,4 +56,8 @@ fn main() {
     store.fire_worker(bob);
     store.fire_worker(bob);
     println!("{:?}", store.workers);
+}
+
+fn get_something() -> &'static str {
+  "true"
 }
