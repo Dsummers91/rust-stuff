@@ -1,7 +1,6 @@
 use std::sync::Mutex;
 use worker::Worker;
 use std::str;
-use std::fmt::{Display, Formatter, Result};
 
 pub struct Store<'a> {
     pub name: &'static str,
