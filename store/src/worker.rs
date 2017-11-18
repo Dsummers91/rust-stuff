@@ -1,16 +1,18 @@
+extern crate rand; 
+
 use std::str;
 use std::fmt::{Display, Formatter, Result};
+use self::rand::distributions::{IndependentSample, Range};
 // use attributes::Attributes;
 
 #[derive(Debug, PartialEq, Clone, Copy, Default)]
 pub struct Worker {
     pub name: &'static str,
-    pub age: i32,
-    potential: i32,
-    bagging: i32,
-    cashier: i32,
-    cleaning: i32,
-    stocking: i32,
+    pub age: u32,
+    potential: u32, // How quickly this person can increase skills
+    bagging: u32,   // Skill level as a bagboy
+    cashier: u32,   // Skill level as a cashier
+    stocking: u32,  // Skill level at restocking
 }
 
 impl Display for Worker {
@@ -19,16 +21,17 @@ impl Display for Worker {
     }
 }
 
-impl Worker {
-    pub fn new(name: &'static str, age: i32) -> Worker  {
+impl  Worker {
+    pub fn new(name: &'static str, age: u32) -> Worker  {
+        let mut rng = rand::thread_rng();
+        let between = Range::new(0, 100);
         Worker {
             age,
             name,
-            potential: 50,
-            bagging: 50,
-            cashier: 50,
-            cleaning: 50,
-            stocking: 50,
+            potential: between.ind_sample(&mut rng),
+            bagging: between.ind_sample(&mut rng),
+            cashier: between.ind_sample(&mut rng),
+            stocking: between.ind_sample(&mut rng),
         }
     }
 }
