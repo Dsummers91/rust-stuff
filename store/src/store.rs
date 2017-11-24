@@ -21,3 +21,18 @@ impl<'a> Store<'a> {
         println!("{} removed", worker);
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_create_store() {
+        let mut workers = Box::new(Vec::new());
+        let store = Box::new(Store {
+            name: "test",
+            workers: Mutex::new(&mut workers),
+        }); 
+        assert_eq!(store.name, "test");
+    }
+}
