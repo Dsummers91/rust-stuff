@@ -1,5 +1,4 @@
-#![feature(plugin, vec_remove_item)]
-#![plugin(clippy)]
+#![feature(vec_remove_item)]
 
 mod worker;
 mod store;
@@ -10,10 +9,7 @@ use store::Store;
 
 fn main() {
     let mut workers = Box::new(Vec::new());
-    let store = Box::new(Store {
-        name: "test",
-        workers: Mutex::new(&mut workers),
-    });
+    let store = Box::new(Store::new("test", &mut workers));
     let bob = Worker::new("Bob", 18);
     println!("{}", store.name);
     store.hire_worker(Worker::new("Mary", 16));
