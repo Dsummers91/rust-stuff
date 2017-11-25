@@ -2,16 +2,16 @@ use std::sync::Mutex;
 use worker::Worker;
 use std::str;
 
-pub struct Store<'a> {
+pub struct Store {
     pub name: &'static str,
-    pub workers: Mutex<&'a mut Vec<Worker>>,
+    pub workers: Mutex<Vec<Worker>>,
     open_time: u32,
     close_time: u32
 }
 
-impl<'a> Store<'a> {
-    pub fn new(name: &'static str, workers_vec: &'a mut Vec<Worker>) -> Store<'a> {
-        let workers = Mutex::new(workers_vec);
+impl Store {
+    pub fn new(name: &'static str) -> Store {
+        let workers = Mutex::new(Vec::new());
         Store {
             name: name,
             workers: workers,
@@ -21,14 +21,14 @@ impl<'a> Store<'a> {
     }
 }
 
-impl<'a> Store<'a> {
-    pub fn hire_worker(&'a self, worker: Worker) {
+impl Store {
+    pub fn hire_worker(&self, worker: Worker) {
         let mut workers = self.workers.lock().unwrap();
         workers.push(worker);
         println!("{} added!", worker);
     }
 
-    pub fn fire_worker(&'a self, worker: Worker) {
+    pub fn fire_worker(&self, worker: Worker) {
         let mut workers = self.workers.lock().unwrap();
         workers.remove_item(&worker);
         println!("{} removed", worker);
@@ -42,15 +42,13 @@ mod tests {
 
     #[test]
     fn test_new_store() {
-        let mut workers = Box::new(Vec::new());
-        let store = Store::new("test", &mut workers); 
+        let store = Store::new("test"); 
         assert_eq!(store.name, "test");
     }
 
     #[test]
     fn test_store_open() {
-        let mut workers = Box::new(Vec::new());
-        let store = Store::new("test", &mut workers); 
+        let store = Store::new("test"); 
         assert_eq!(store.open_time, 800);
     }
 }

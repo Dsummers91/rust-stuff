@@ -8,8 +8,7 @@ use worker::Worker;
 use store::Store;
 
 fn main() {
-    let mut workers = Box::new(Vec::new());
-    let store = Box::new(Store::new("test", &mut workers));
+    let store = Box::new(Store::new("test"));
     let bob = Worker::new("Bob", 18);
     println!("{}", store.name);
     store.hire_worker(Worker::new("Mary", 16));
