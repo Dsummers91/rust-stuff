@@ -1,0 +1,8 @@
+[package]
+name = "store"
+version = "0.0.0"
+authors = ["dsummers91 <deonsummers91@gmail.com>"]
+
+
+[dependencies]
+rand = "0.3"
