@@ -28,4 +28,3 @@ fn index() -> io::Result<NamedFile> {
 fn main() {
     rocket::ignite().mount("/", routes![index, name]).launch();
 }
-
