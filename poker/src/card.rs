@@ -16,6 +16,7 @@ pub enum Suit {
   Clubs,
   Hearts,
 }
+
 impl Display for Card {
   fn fmt(self: &Card, f: &mut Formatter) -> Result {
     let rank = match self.rank {
@@ -31,10 +32,16 @@ impl Display for Card {
 }
 
 impl Card {
-  fn value(self: &Card) -> u8 {
-    self.rank.parse::<u8>().unwrap()
+  fn value(self: &Card) -> Vec<u8> {
+    if self.rank != "14" {
+      vec![self.rank.parse::<u8>().unwrap()]
+    } else {
+      vec![1, 14]
+    }
   }
+
 }
+
 
 #[cfg(test)]
 mod tests {
@@ -70,14 +77,20 @@ mod tests {
     }
 
     #[test]
-    fn ace_should_have_value_of_14() {
-      let card = Card{suit:Suit::Hearts, rank:"14"};
-      assert_eq!(card.value(), 14);
+    fn deuce_should_have_value_of_2() {
+      let card = Card{suit:Suit::Hearts, rank:"2"};
+      assert_eq!(card.value(), vec![2]);
     }
 
     #[test]
-    fn deuce_should_have_value_of_2() {
-      let card = Card{suit:Suit::Hearts, rank:"2"};
-      assert_eq!(card.value(), 2);
+    fn ace_should_have_value_if_1_or_14() {
+      let card = Card{suit:Suit::Hearts, rank:"14"};
+      assert_eq!(card.value(), vec![1, 14]);
+    }
+
+    #[test]
+    fn king_should_have_value_if_13() {
+      let card = Card{suit:Suit::Hearts, rank:"13"};
+      assert_eq!(card.value(), vec![13]);
     }
 }
