@@ -1,9 +1,9 @@
 mod card;
 
-use card::Card;
+use card::{Card, Suit};
 
 pub fn main() {
-    let c = Card{rank:1, suit:2};
+    let c = Card{rank:"1", suit: Suit::Spades};
     println!("{}", c);
 }
 
