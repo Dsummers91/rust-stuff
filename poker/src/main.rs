@@ -10,9 +10,9 @@ use deck::{Deck};
 
 
 pub fn main() {
-    let c = Card{rank:"1", suit: Suit::Spades};
-    println!("{}", c);
-    // let d: <Vec<Card>> = Deck::init();
+    let c = Card{rank:1, suit: Suit::Spades};
+    let d: Vec<Card> = Deck::new();
+    println!("{:?}", d);
 }
 
 #[cfg(test)]

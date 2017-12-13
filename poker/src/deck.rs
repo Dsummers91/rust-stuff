@@ -8,10 +8,6 @@ pub trait Deck<T> {
 }
 
 impl Deck<Vec<Card>> for Vec<Card> {
-    // pub fn new() -> Deck {
-
-    // }
-
     fn new() -> Vec<Card> {
         println!("{}", 2);
         let mut deck: Vec<Card> = Vec::new();
@@ -22,9 +18,8 @@ impl Deck<Vec<Card>> for Vec<Card> {
 
     fn populate(mut self: &mut Self) {
       for suit in Suit::iter() {
-        for rank in 2..14 {
-          let r: &str = &rank.to_string();
-          self.push(Card::new(rank, Suit::Spades));
+        for rank in 2..14+1 {
+          self.push(Card::new(rank, Suit::get_suit(suit)));
         }
       }
     }
