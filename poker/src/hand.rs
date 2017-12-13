@@ -1,4 +1,4 @@
-use card::{Card, Suit};
+// use card::{Card, Suit};
 
 pub struct Hand {
   pub cards: Vec<u8>
@@ -13,7 +13,7 @@ impl Hand {
 
 #[cfg(test)]
   mod tests {
-  use super::*;
+  // use super::*;
     #[test]
     fn should_be_true() {
     assert_eq!(2 + 2, 4);

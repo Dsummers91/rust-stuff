@@ -6,14 +6,13 @@ mod deck;
 
 
 use card::{Card, Suit};
-use hand::{Hand};
 use deck::{Deck};
 
 
 pub fn main() {
     let c = Card{rank:"1", suit: Suit::Spades};
     println!("{}", c);
-    Deck::init();
+    // let d: <Vec<Card>> = Deck::init();
 }
 
 #[cfg(test)]

@@ -1,6 +1,7 @@
 
 use std::str;
 use std::fmt::{Display, Formatter, Result};
+use std::slice::Iter;
 
 
 #[derive(Debug)]
@@ -15,6 +16,13 @@ pub enum Suit {
   Diamonds,
   Clubs,
   Hearts,
+}
+
+impl Suit {
+    pub fn iter() -> Iter<'static, Suit> {
+        static SUITS: [Suit;  4] = [Suit::Spades, Suit::Diamonds, Suit::Clubs, Suit::Hearts];
+        SUITS.into_iter()
+    }
 }
 
 impl Display for Card {
@@ -32,7 +40,13 @@ impl Display for Card {
 }
 
 impl Card {
-  fn value(self: &Card) -> Vec<u8> {
+
+  pub fn new(rank: u8, suit: Suit) -> Card {
+    let r = rank.to_string().to_owned();
+    Card{rank: &r, suit: suit}
+  }
+
+  pub fn value(self: &Card) -> Vec<u8> {
     if self.rank != "14" {
       vec![self.rank.parse::<u8>().unwrap()]
     } else {

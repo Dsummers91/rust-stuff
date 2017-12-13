@@ -1,38 +1,46 @@
-
 use card::{Card, Suit};
 use rand::{thread_rng, Rng};
 
-
-pub struct Deck<'a> {
-  pub deck: &'a mut Vec<Card>
+pub trait Deck<T> {
+    fn new() -> Self;
+    fn populate(mut self: &mut Self);
+    fn shuffle(mut self: &mut Self);
 }
 
-impl<'a> Deck<'a> {
-  // pub fn new() -> Deck {
-   
-  // }
+impl Deck<Vec<Card>> for Vec<Card> {
+    // pub fn new() -> Deck {
 
-  pub fn init() {
-      println!("{}", 2)
-    // for suit in Suit {
-    //   println!("{}", suit)
     // }
-  }
 
-  fn shuffle(self: &Deck) {
-    let mut deck = self.clone();
-    let mut rng = thread_rng();
-    
-    rng.shuffle(&mut deck.deck)
-  }
+    fn new() -> Vec<Card> {
+        println!("{}", 2);
+        let mut deck: Vec<Card> = Vec::new();
+        deck.populate();
+        deck.shuffle();
+        deck
+    }
+
+    fn populate(mut self: &mut Self) {
+      for suit in Suit::iter() {
+        for rank in 2..14 {
+          let r: &str = &rank.to_string();
+          self.push(Card::new(rank, Suit::Spades));
+        }
+      }
+    }
+
+    fn shuffle(mut self: &mut Self)  {
+        let mut rng = thread_rng();
+        rng.shuffle(&mut self);
+    }
 }
 
 #[cfg(test)]
-  mod tests {
-  use super::*;
+mod tests {
+    use super::*;
     #[test]
     fn should_be_true() {
-      let deck = Deck::init();
-      assert_eq!(deck.)
+        let mut f: Vec<Card> = Deck::new();
+        f.shuffle();
     }
 }
