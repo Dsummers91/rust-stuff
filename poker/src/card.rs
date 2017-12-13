@@ -1,5 +1,3 @@
-
-use std::str;
 use std::fmt::{Display, Formatter, Result};
 use std::slice::Iter;
 
@@ -30,7 +28,6 @@ impl Suit {
         &Suit::Diamonds => Suit::Diamonds,
         &Suit::Hearts => Suit::Hearts,
         &Suit::Clubs => Suit::Clubs,
-        _ =>  panic!(),
       }
     }
 }
@@ -39,11 +36,19 @@ impl Display for Card {
   fn fmt(self: &Card, f: &mut Formatter) -> Result {
     let rank = match self.rank {
       2   => "Deuce",
+      3   => "3",
+      4   => "4",
+      5   => "5",
+      6   => "6",
+      7   => "7",
+      8   => "8",
+      9   => "9",
+      10  => "10",
       11  => "Jack",
       12  => "Queen",
       13  => "King",
       14  => "Ace",
-      _   => "self"
+      _ => panic!("Rank does not exist")
     };
     write!(f, "{} of {:?}", rank, self.suit)
   }

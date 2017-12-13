@@ -5,14 +5,13 @@ mod hand;
 mod deck;
 
 
-use card::{Card, Suit};
+use card::{Card};
 use deck::{Deck};
 
 
 pub fn main() {
-    let c = Card{rank:1, suit: Suit::Spades};
-    let d: Vec<Card> = Deck::new();
-    println!("{:?}", d);
+    let deck: Vec<Card> = Deck::new();
+    println!("{:?}", deck);
 }
 
 #[cfg(test)]
