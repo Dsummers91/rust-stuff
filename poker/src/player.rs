@@ -1,20 +1,20 @@
 use card::{Card};
 use deck::{Deck};
 
-pub trait Hand<T> {
-    fn new(&mut self, Vec<Card>);
+pub trait Player<T> {
+    fn new(&mut self);
 }
 
 
-impl Hand<Vec<Card>> for Vec<Card> {
-  fn new(self: &mut Self, deck: Vec<Card>) {
+impl Player<Vec<Card>> for Vec<Card> {
+  fn new(self: &mut Self) {
     unimplemented!();
   }
 }
 
 #[cfg(test)]
   mod tests {
-  // use super::*;
+  use super::*;
     #[test]
     fn should_be_true() {
     assert_eq!(2 + 2, 4);
