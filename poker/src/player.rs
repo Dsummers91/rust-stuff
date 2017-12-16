@@ -1,14 +1,15 @@
 use card::{Card};
 use deck::{Deck};
+use table::{Table};
 
-pub trait Player<T> {
-    fn new(&mut self);
+pub struct Player {
+  pub hand: Vec<Card>,
+  pub chips: u64,
 }
 
+impl Player {
+  fn sit(table: &mut Table, seat: u8) {
 
-impl Player<Vec<Card>> for Vec<Card> {
-  fn new(self: &mut Self) {
-    unimplemented!();
   }
 }
 
@@ -17,7 +18,7 @@ impl Player<Vec<Card>> for Vec<Card> {
   use super::*;
     #[test]
     fn should_be_true() {
-    assert_eq!(2 + 2, 4);
+      assert_eq!(2 + 2, 4);
     }
 }
 

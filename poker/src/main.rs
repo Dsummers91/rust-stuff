@@ -3,7 +3,7 @@ extern crate rand;
 mod card;
 mod player;
 mod deck;
-
+mod table;
 
 use card::{Card};
 use deck::{Deck};
