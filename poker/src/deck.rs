@@ -16,14 +16,14 @@ impl Deck<Vec<Card>> for Vec<Card> {
     }
 
     fn populate(self: &mut Self) {
-      for suit in Suit::iter() {
-        for rank in 2..14+1 {
-          self.push(Card::new(rank, Suit::get_suit(suit)));
+        for suit in Suit::iter() {
+            for rank in 2..14 + 1 {
+                self.push(Card::new(rank, Suit::get_suit(suit)));
+            }
         }
-      }
     }
 
-    fn shuffle(mut self: &mut Self)  {
+    fn shuffle(mut self: &mut Self) {
         let mut rng = thread_rng();
         rng.shuffle(&mut self);
     }

@@ -1,10 +1,12 @@
+use card::Card;
+
 pub trait Hand<T> {
-    fn new(&mut self);
+    fn new();
 }
 
 
 impl Hand<Vec<Card>> for Vec<Card> {
-  fn new(self: &mut Self) {
+  fn new() {
     unimplemented!();
   }
 }
